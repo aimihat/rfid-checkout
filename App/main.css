@@ -210,13 +210,17 @@ body {
   }
 }
 
-.payment-method {
+.payment-method,.something-wrong,.pay-button {
 	padding: 10px!important;
 	width: 200px!important;
 	font-size: 15px!important;
 }
-.payment-methods {
+.payment-methods, .items-show-options {
 	display: flex;
+}
+.something-wrong {
+	background: rgb(255, 143, 57)!important;
+	box-shadow: 0 6px rgb(221, 110, 24)!important;
 }
 
 .supermarket-name {
