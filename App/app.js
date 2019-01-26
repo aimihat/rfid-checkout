@@ -3,6 +3,8 @@
 var current_fs, next_fs, previous_fs; //fieldsets
 var left, opacity, scale; //fieldset properties which we will animate
 var animating; //flag to prevent quick multi-click glitches
+var theft_address = "http://192.168.0.22"; //address to query for checking if customer is leaving
+var theft;
 
 $(".next").click(function(){
 	if(animating) return false;
@@ -101,10 +103,30 @@ function decrement_seconds() {
 }
 
 setInterval(function(){$("#warning_triangle").fadeIn(750).fadeOut(750).fadeIn(750).fadeOut(750).fadeIn(750)}, 3000);
+setInterval(check_theft(), 1000);
 
 
-$("#warning_box").modal({
- escapeClose: false,
- clickClose: false,
- showClose: false
-});
+
+function check_theft() {
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+           // Typical action to be performed when the document is ready:
+           //document.getElementById("demo").innerHTML = xhttp.responseText;
+           theft = xhttp.responseText.trim();
+           //return xhttp.responseText;
+        }
+    };
+	xhttp.open("GET", theft_address, true);
+    xhttp.send();
+	if (theft == "customer_leaving"){
+		$("#warning_box").modal()
+	}
+}
+
+function enable_assistant_coming() {
+	var xhttp = new XMLHttpRequest();
+	$("#help_box").modal();
+	xhttp.open("GET", assistant_address, true);
+    xhttp.send();
+}

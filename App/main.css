@@ -193,6 +193,11 @@ width: 900px;
 	width: auto!important;
 
 }
+#help_box {
+	max-width: none!important;
+	width: auto!important;
+
+}
 
 
 
@@ -202,4 +207,16 @@ ui-button.ui-corner-all.ui-widget.ui-button-icon-only.ui-dialog-titlebar-close {
 
 .close-modal {
 	display: none!important;
+}
+
+
+
+#lding {
+	height: 250px;
+	width: auto;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 50px;
+	margin-top: 50px;
 }
