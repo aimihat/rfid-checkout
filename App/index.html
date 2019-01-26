@@ -26,9 +26,35 @@
   <fieldset class="item-confirmation-page">
     <h2 class="fs-title">Confirm Items</h2>
     <h3 class="fs-subtitle">The items that you bought. There are no active promos.</h3>
-    <input type="text" name="twitter" placeholder="Twitter" />
-    <input type="text" name="facebook" placeholder="Facebook" />
-    <input type="text" name="gplus" placeholder="Google Plus" />
+    <div style="width: 70%; margin: 0 auto;">
+	    <table id="table" class="table table-hover table-mc-light-blue">
+	      <thead>
+	        <tr>
+	          <th>Product</th>
+	          <th>Price</th>
+	          <th>Quantity</th>
+	        </tr>
+	      </thead>
+	      <tbody>
+	        <tr>
+	          <td data-title="Name">Apple</td>
+	          <td data-title="Link">£12.4</td>
+	          <td data-title="Status">1</td>
+	        </tr>
+	        <tr>
+	          <td data-title="Name">Massive Dildo</td>
+	          <td data-title="Link">£12.4</td>
+	          <td data-title="Status">3</td>
+	        </tr>
+	        <tr>
+	          <td data-title="Name">Coca cola</td>
+	          <td data-title="Link">£12.4</td>
+	          <td data-title="Status">2</td>
+	        </tr>
+	      </tbody>
+	    </table>
+	    <h2 class="fs-title" style="text-transform: none; text-align: left">Total: £15.42</h2>
+	</div>
     <div class="items-show-options">
     <input type="button" name="next" class="green-button something-wrong" value="Something Wrong?" />
 	<input type="button" name="next" class="green-button pay-button" value="Pay" />
@@ -53,5 +79,7 @@
 <script src="jquery-3.3.1.min.js"></script>
 <script src="jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
 <script type="text/javascript" src='app.js'></script>
+<canvas class="background"></canvas>
+<script src="particles.js"></script>
 </body>
 </html>

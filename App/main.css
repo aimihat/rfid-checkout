@@ -287,3 +287,46 @@ body {
   width: 75%;
   margin: 0 15px 0 0;
 }
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+.background {
+  position:absolute;
+  display: block;  
+  top: 0;
+  left: 0;
+  z-index: -12;
+}
+
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 2rem;
+    background-color: #fff;
+}
+.table td {
+	text-align: left;
+    padding: 15px;
+    vertical-align: top;
+    border-top: 0;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.table th {
+	    text-align: left;
+    padding: 15px;
+    vertical-align: top;
+    border-top: 0;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+
+    font-weight: 400;
+    color: #757575;
+    vertical-align: bottom;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}

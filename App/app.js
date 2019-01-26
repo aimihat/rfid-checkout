@@ -82,3 +82,14 @@ function tableCreate(thisObject) {
 	tbl.appendChild(tbdy);
 	body.appendChild(tbl)
   }
+
+
+
+window.onload = function() {
+  Particles.init({
+  	selector: '.background',
+  	connectParticles: true,
+  	// maxParticles: 0,
+  	color: ['#ffffff'],
+  });
+};
