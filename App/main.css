@@ -1,15 +1,12 @@
-/*custom font*/
+/*basic reset*/
 @import url(https://fonts.googleapis.com/css?family=Montserrat);
 
-/*basic reset*/
 * {margin: 0; padding: 0;}
-
 html {
-	height: 100%;
 	/*Image only BG fallback*/
-	
+	min-height: 100vh;
 	/*background = gradient + image pattern combo*/
-	background: 
+	background:
 		linear-gradient(rgba(12, 204, 82,0.9),rgba(12, 204, 82,0.65))
 }
 
@@ -32,7 +29,7 @@ body {
 	box-sizing: border-box;
 	width: 80%;
 	margin: 0 10%;
-	
+
 	/*stacking fieldsets above each other*/
 	position: relative;
 }
@@ -121,7 +118,7 @@ body {
 }
 #progressbar li:first-child:after {
 	/*connector not needed before the first step*/
-	content: none; 
+	content: none;
 }
 /*marking active/completed steps green*/
 /*The number of the step and the connector before it = green*/
@@ -156,14 +153,10 @@ body {
 
 }
 
-
 .welcome-text {
+
 	margin-top: 0px!important;
 }
-
-
-
-
 .scan-loader {
 	margin: 50px auto 80px!important;
 	position: relative;
@@ -215,8 +208,14 @@ body {
 	width: 200px!important;
 	font-size: 15px!important;
 }
+.payment-methods input {
+    flex-basis: 35%;
+    margin: 25px 50px!important;
+}
 .payment-methods, .items-show-options {
 	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
 }
 .something-wrong {
 	background: rgb(255, 143, 57)!important;
@@ -231,10 +230,29 @@ body {
 .coupon-code input {
 	width: 300px!important;
 }
+.coupon-code.language input::placeholder {
+	font-size: 17px;
+	text-align: center;
+}
+
+.coupon-code.promo {
+	margin-left: 51px!important;
+}
+
+.coupon-code.language input {
+	width: 100px!important;
+	    margin: 0 auto!important
+}
 .coupon-code {
 	margin: 45px auto -35px!important;
     width: 200px;
 	font-weight: 700!important;
+	float: left;
+}
+.footer {
+	width: 80%;
+	margin:0 auto;
+	height: 150px;
 }
 
 .coupon-code .form-row {
@@ -308,7 +326,7 @@ html, body {
 }
 .table td {
 	text-align: left;
-    padding: 15px;
+    padding: 10px 15px;
     vertical-align: top;
     border-top: 0;
     -webkit-transition: all 0.3s ease;
@@ -329,4 +347,73 @@ html, body {
     color: #757575;
     vertical-align: bottom;
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+#warning_triangle {
+	height: 300px;
+	width: 300px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 50px;
+	margin-top: 50px;
+
+}
+
+#warning_text {
+font-size: 30px;
+width: 900px;
+	display: inline-block;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+
+	margin-top: 0px;
+	margin-bottom: 50px;
+
+}
+
+#warning_box {
+	max-width: none!important;
+	width: auto!important;
+
+}
+#help_box {
+	max-width: none!important;
+	width: auto!important;
+
+}
+
+
+
+ui-button.ui-corner-all.ui-widget.ui-button-icon-only.ui-dialog-titlebar-close {
+    display: none!important;
+}
+
+.close-modal {
+	display: none!important;
+}
+
+
+
+#lding {
+	height: 250px;
+	width: auto;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 50px;
+	margin-top: 50px;
+}
+
+.assistant-loader {
+	margin: 50px auto 134px!important;
+    position: relative;
+    left: 384px;
+}
+
+.thank_you .assistant-loader {
+	position: relative!important;
+    left: 314px!important;
+    margin: initial!important;
 }

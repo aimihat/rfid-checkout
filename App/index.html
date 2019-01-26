@@ -4,6 +4,7 @@
 	<title>Supermarket Checkout</title>
 	<link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="main.css">
+	<link rel="stylesheet" type="text/css" href="animate.css">
 </head>
 <body>
 <form id="msform">
@@ -18,10 +19,10 @@
     <h3 class="fs-subtitle">Please walk in the scanning area to begin.</h3>
     <input type="button" name="next" class="next scan-button green-button" value="Scan" />
     <div class="scan-loader" style="display:none">
-	<div class="dot"></div>
-	<div class="dot"></div>
-	<div class="dot"></div>
-</div>
+		<div class="dot"></div>
+		<div class="dot"></div>
+		<div class="dot"></div>
+	</div>
   </fieldset>
   <fieldset class="item-confirmation-page">
     <h2 class="fs-title">Confirm Items</h2>
@@ -31,8 +32,9 @@
 	      <thead>
 	        <tr>
 	          <th>Product</th>
-	          <th>Price</th>
+	          <th>Item Price</th>
 	          <th>Quantity</th>
+	          <th>Price</th>
 	        </tr>
 	      </thead>
 	      <tbody>
@@ -40,46 +42,95 @@
 	          <td data-title="Name">Apple</td>
 	          <td data-title="Link">£12.4</td>
 	          <td data-title="Status">1</td>
+	          <td data-title="Link">£12.4</td>
 	        </tr>
 	        <tr>
 	          <td data-title="Name">Massive Dildo</td>
 	          <td data-title="Link">£12.4</td>
 	          <td data-title="Status">3</td>
+	          <td data-title="Link">£12.4</td>
 	        </tr>
 	        <tr>
 	          <td data-title="Name">Coca cola</td>
 	          <td data-title="Link">£12.4</td>
 	          <td data-title="Status">2</td>
+	          <td data-title="Link">£12.4</td>
 	        </tr>
 	      </tbody>
+	      <tfoot>
+	      	<tr>
+	      		<td></td>
+	      		<td></td>
+	      		<td></td>
+	      		<td class="fs-title" style="text-transform: none; text-align: right; margin:  -15px auto -15px;">Total: £15.42</td>
+	      	</tr>
+	      </tfoot>
 	    </table>
-	    <h2 class="fs-title" style="text-transform: none; text-align: left">Total: £15.42</h2>
+	    
 	</div>
     <div class="items-show-options">
-    <input type="button" name="next" class="green-button something-wrong" value="Something Wrong?" />
+    <input type="button" name="next" onclick="$('#help_box').modal()" class="green-button something-wrong" value="Something Wrong?" />
 	<input type="button" name="next" class="green-button pay-button" value="Pay" />
 	</div>
   </fieldset>
   <fieldset class="payment-page">
+  	<div class="payment-stuff">
     <h2 class="fs-title">Payment of £15.42</h2>
     <h3 class="fs-subtitle">Please select your preferred payment method.</h3>
     <div class="payment-methods">
-		<input type="button" name="next" class="green-button payment-method" value="Debit/Credit Card" />
+		<input type="button" name="next" class="green-button payment-method debit-method" value="Debit/Credit Card" />
 		<input type="button" name="next" class="green-button payment-method" value="Loyalty Points" />
 		<input type="button" name="next" class="green-button payment-method" value="Cash" />
+		<input type="button" name="next" class="green-button payment-method" value="Sexual favours" />
 	</div>
-	<div class='form-row coupon-code'>
+	<div class='form-row coupon-code promo'>
           <div class='input-group'>
             <label for=''>Coupon code</label>
             <input placeholder='' type='text'>
           </div>
         </div>
+   </div>
+   <div class="thank_you" style="display: none;">
+   		<div class="assistant-loader" >
+			<div class="dot"></div>
+			<div class="dot"></div>
+			<div class="dot"></div>
+		</div>
+   		<h1 style="display: none">Thank you for choosing us!</h1>
+   		<input style="display: none" type="button" name="next" class="green-button payment-method" value="Next client →" />
+   </div>
   </fieldset>
+
+  <div class="footer">
+  <div class='form-row coupon-code language'>
+      <div class='input-group'>
+        <label for=''>Language</label>
+        <input placeholder='English' type='text'>
+      </div>
+   </div>
+
+  <div id="warning_box" class="modal">
+	  <img id="warning_triangle" src="triangle.png" alt="warning">
+	  <p id="warning_text">Please do not forget to pay for your items. <br /> An assistant is coming to help you.</p>
+  </div>
+  <div id="help_box" class="modal">
+	  <div class="assistant-loader" >
+		<div class="dot"></div>
+		<div class="dot"></div>
+		<div class="dot"></div>
+	</div>
+	  <p id="warning_text">Please wait, an assistant is coming to help you.</p>
+  </div>
+
+
 </form>
+<!-- jQuery -->
 <script src="jquery-3.3.1.min.js"></script>
 <script src="jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
 <script type="text/javascript" src='app.js'></script>
 <canvas class="background"></canvas>
 <script src="particles.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 </body>
 </html>
