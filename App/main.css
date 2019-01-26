@@ -10,7 +10,7 @@ html {
 	
 	/*background = gradient + image pattern combo*/
 	background: 
-		linear-gradient(rgba(196, 102, 0, 0.6), rgba(155, 89, 182, 0.6));
+		linear-gradient(rgb(58, 133, 255), rgb(173, 204, 255));
 }
 
 body {
@@ -18,7 +18,7 @@ body {
 }
 /*form styles*/
 #msform {
-	width: 400px;
+	width: 1000px;
 	margin: 50px auto;
 	text-align: center;
 	position: relative;
