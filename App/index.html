@@ -35,9 +35,20 @@
     <input type="button" name="previous" class="previous action-button" value="Previous" />
     <input type="submit" name="submit" class="submit action-button" value="Submit" />
   </fieldset>
+
+  <div id="warning_box" class="modal">
+	  <img id="warning_triangle" src="triangle.png" alt="warning">
+	  <p id="warning_text">Please do not forget to pay for your items. <br /> An assistant is coming to help.</p>
+  </div>
+  <p><a id="warning_button" href="#warning_box" rel="modal:open">Open Modal</a></p>
+
+
 </form>
+<!-- jQuery -->
 <script src="jquery-3.3.1.min.js"></script>
 <script src="jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
 <script type="text/javascript" src='app.js'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 </body>
 </html>
