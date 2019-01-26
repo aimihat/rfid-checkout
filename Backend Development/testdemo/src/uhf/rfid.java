@@ -110,8 +110,8 @@ public class rfid {
 	    			 System.out.println("EPCLen: "+epclen);
 	    			 System.out.println(EPCstr.toUpperCase());
 	    			 //Write data according to TID number
-	    			 byte ENum=(byte)255;//Mask
-	    			 byte Mem=1;//Read EPC
+	    			 byte ENum=(byte)255; //Mask
+	    			 byte Mem=1; //Read EPC
 	    			 byte WordPtr=2;//Starting from the second word
 	    			 byte Num=6;//Read 6 words
 	    			 byte[]Password=new byte[4];
@@ -142,7 +142,7 @@ public class rfid {
                      WordPtr=1;
                      result = reader.WriteData_G2(comAddr, epc, WNum, ENum, Mem, WordPtr, Wdt, Password,
                     		 MaskMem,MaskAdr, MaskLen, MaskData, Errorcode, PortHandle[0]);
-                     System.out.println("Write EPC number: "+result);
+                     System.out.println("Write EPC number: "+result); //just stuff to write numbers
                      WordPtr=2;
 	    			 result = reader.ReadData_G2(comAddr,epc,ENum,Mem,WordPtr,Num,Password,
 		                       MaskMem,MaskAdr, MaskLen,MaskData,Data,Errorcode,PortHandle[0]);
