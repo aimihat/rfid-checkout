@@ -21,9 +21,10 @@ public class reader {
 	     //Serial port connection
 	     int result = reader.OpenComPort(3, comAddr, baud, PortHandle);
 	     System.out.println("Connect the serial port:"+ result);
+		 ArrayList<String> finalEPCList = new ArrayList<String>();
 	     if(result==0)
 	     {
-	    	 byte PowerDbm = 10;
+	    	 byte PowerDbm = 30;
 	    	 reader.SetRfPower(comAddr, PowerDbm, PortHandle[0]);
 	    	 byte beep = 1;  
 	    	 reader.SetBeepNotification(comAddr, beep , PortHandle[0]);
@@ -67,7 +68,6 @@ public class reader {
 			 byte InAnt=(byte)0x80;
 			 byte Scantime=0;
 			 byte FastFlag=0;
-			 ArrayList<String> finalEPCList = new ArrayList<String>();
 			 //byte[]pEPCList=new byte[20000];
 			 //int[]Totallen=new int[1];
 			 //int[]CardNum=new int[1];
