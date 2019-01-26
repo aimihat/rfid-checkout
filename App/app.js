@@ -80,3 +80,38 @@ function gotonext(current_page){
 $(".submit").click(function(){
 	return false;
 })
+
+$.get("localhost:80",function(data){
+	var obj = JSON.parse(data);
+	tableCreate();
+	for( i=0; i<obj.length; i++){
+		addTableRow(obj[i]);
+	}
+})
+
+function tableCreate(thisObject) {
+	var body = document.getElementsByTagName('body')[0];
+	var tbl = document.createElement('table');
+	tbl.style.width = '100%';
+	tbl.setAttribute('border', '1');
+	var tbdy = document.createElement('tbody');
+	for (var i = 0; i < thisObject.length; i++) {
+	  var tr = document.createElement('tr');
+	  for (var j = 0; j < 3; j++) {
+		var td = document.createElement('td');
+		if(j==0){
+			td.appendChild(document.createTextNode(thisObject[i]["name"]));
+		}
+		else if(j==1){
+			td.appendChild(document.createTextNode(thisObject[i]["price"]));
+		}
+		else if(j==2){
+			td.appendChild(document.createTextNode(thisObject[i]["quantity"]));
+		}
+		tr.appendChild(td)
+	  }
+	  tbdy.appendChild(tr);
+	}
+	tbl.appendChild(tbdy);
+	body.appendChild(tbl)
+  }
