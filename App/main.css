@@ -14,12 +14,12 @@ html {
 }
 
 body {
-	font-family: montserrat, arial, verdana;
+	font-family: 'Raleway'!important;
 }
 /*form styles*/
 #msform {
 	width: 1000px;
-	margin: 50px auto;
+	margin: 0 auto;
 	text-align: center;
 	position: relative;
 }
@@ -28,7 +28,7 @@ body {
 	border: 0 none;
 	border-radius: 3px;
 	box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
-	padding: 20px 30px;
+	padding: 80px 30px 80px!important;
 	box-sizing: border-box;
 	width: 80%;
 	margin: 0 10%;
@@ -69,14 +69,14 @@ body {
 }
 /*headings*/
 .fs-title {
-	font-size: 15px;
+	font-size: 20px;
 	text-transform: uppercase;
 	color: #2C3E50;
 	margin-bottom: 10px;
 }
 .fs-subtitle {
 	font-weight: normal;
-	font-size: 13px;
+	font-size: 16px;
 	color: #666;
 	margin-bottom: 20px;
 }
@@ -130,7 +130,7 @@ body {
 	color: white;
 }
 
-#msform input.scan-button {
+#msform input.green-button {
 	border: none;
     font-family: inherit;
     cursor: pointer;
@@ -143,10 +143,10 @@ body {
     -webkit-transition: all 0.3s;
     -moz-transition: all 0.3s;
     transition: all 0.3s;
-	width: 50%!important;
-	margin: 50px auto 80px!important;
-	padding: 25px 20px!important;
-	font-size: 27px!important;
+	width: 50%;
+	margin: 50px auto 0;
+	padding: 25px 20px;
+	font-size: 27px;
 	background: #0ccc52;
     color: #fff;
     box-shadow: 0 6px #07993d;
@@ -158,5 +158,128 @@ body {
 
 
 .welcome-text {
-	margin-top: 80px!important;
+	margin-top: 0px!important;
+}
+
+
+
+
+.scan-loader {
+	margin: 50px auto 80px!important;
+	position: relative;
+	left: 316px;
+}
+.dot {
+  width: 25px;
+  height: 25px;
+  border: 2px solid rgb(255, 143, 57);
+  border-radius: 50%;
+  float: left;
+  margin: 0 5px;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  -webkit-animation: fx 1000ms ease infinite 0ms;
+          animation: fx 1000ms ease infinite 0ms;
+}
+.dot:nth-child(2) {
+  -webkit-animation: fx 1000ms ease infinite 300ms;
+          animation: fx 1000ms ease infinite 300ms;
+}
+.dot:nth-child(3) {
+  -webkit-animation: fx 1000ms ease infinite 600ms;
+          animation: fx 1000ms ease infinite 600ms;
+}
+@-webkit-keyframes fx {
+  50% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes fx {
+  50% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.payment-method {
+	padding: 10px!important;
+	width: 200px!important;
+	font-size: 15px!important;
+}
+.payment-methods {
+	display: flex;
+}
+
+.supermarket-name {
+	margin: 20px!important;
+	color: white;
+}
+
+.coupon-code input {
+	width: 300px!important;
+}
+.coupon-code {
+	margin: 45px auto -35px!important;
+    width: 200px;
+	font-weight: 700!important;
+}
+
+.coupon-code .form-row {
+	display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-direction: normal;
+  -moz-box-direction: normal;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin: 0 0 30px;
+}
+.coupon-code input {
+  outline: none!important;
+  display: block!important;
+  background: rgba(0, 0, 0, 0.1)!important;
+  width: 100%!important;
+  margin: 0!important;
+  border: 0!important;
+  -webkit-border-radius: 3px!important;
+  -webkit-background-clip: padding-box!important;
+  -moz-border-radius: 3px!important;
+  -moz-background-clip: padding!important;
+  border-radius: 3px!important;
+  background-clip: padding-box!important;
+  padding: 15px!important;
+  color: #999!important;
+  font-size: 12px!important;
+  font-weight: 700!important;
+  -webkit-box-sizing: border-box!important;
+  -moz-box-sizing: border-box!important;
+  box-sizing: border-box!important;
+}
+.coupon-code label {
+  display: block!important;
+  width: 100%!important;
+  margin: 0 0 10px!important;
+  color: #2C3E50!important;
+  font-size: 12px!important;
+  font-weight: 700!important;
+  letter-spacing: 1px!important;
+  text-transform: uppercase!important;
+}
+.coupon-code .form-row:last-child .input-group {
+  width: 75%;
+  margin: 0 15px 0 0;
 }

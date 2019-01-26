@@ -2,38 +2,50 @@
 <html>
 <head>
 	<title>Supermarket Checkout</title>
+	<link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
 <form id="msform">
+	<h1 class="supermarket-name">Ocadow</h1>
   <ul id="progressbar">
-    <li class="active">Account Setup</li>
-    <li>Social Profiles</li>
-    <li>Personal Details</li>
+    <li class="active">Start scan</li>
+    <li>Confirm Items</li>
+    <li>Payment</li>
   </ul>
-  <fieldset>
+<!--   <fieldset class="scanning-page">
     <h2 class="fs-title welcome-text">Welcome</h2>
     <h3 class="fs-subtitle">Please walk in the scanning area to begin.</h3>
-    <input type="button" name="next" class="next scan-button" value="Scan" />
+    <input type="button" name="next" class="next scan-button green-button" value="Scan" />
+    <div class="scan-loader" style="display:none">
+	<div class="dot"></div>
+	<div class="dot"></div>
+	<div class="dot"></div>
+</div>
   </fieldset>
-  <fieldset>
-    <h2 class="fs-title">Social Profiles</h2>
+  <fieldset class="item-confirmation-page">
+    <h2 class="fs-title">Confirm Items</h2>
     <h3 class="fs-subtitle">Your presence on the social network</h3>
     <input type="text" name="twitter" placeholder="Twitter" />
     <input type="text" name="facebook" placeholder="Facebook" />
     <input type="text" name="gplus" placeholder="Google Plus" />
     <input type="button" name="previous" class="previous action-button" value="Previous" />
     <input type="button" name="next" class="next action-button" value="Next" />
-  </fieldset>
-  <fieldset>
-    <h2 class="fs-title">Personal Details</h2>
-    <h3 class="fs-subtitle">We will never sell it</h3>
-    <input type="text" name="fname" placeholder="First Name" />
-    <input type="text" name="lname" placeholder="Last Name" />
-    <input type="text" name="phone" placeholder="Phone" />
-    <textarea name="address" placeholder="Address"></textarea>
-    <input type="button" name="previous" class="previous action-button" value="Previous" />
-    <input type="submit" name="submit" class="submit action-button" value="Submit" />
+  </fieldset> -->
+  <fieldset class="payment-page">
+    <h2 class="fs-title">Payment of £15.42</h2>
+    <h3 class="fs-subtitle">Please select your preferred payment method.</h3>
+    <div class="payment-methods">
+		<input type="button" name="next" class="green-button payment-method" value="Debit/Credit Card" />
+		<input type="button" name="next" class="green-button payment-method" value="Loyalty Points" />
+		<input type="button" name="next" class="green-button payment-method" value="Cash" />
+	</div>
+	<div class='form-row coupon-code'>
+          <div class='input-group'>
+            <label for=''>Coupon code</label>
+            <input placeholder='' type='text'>
+          </div>
+        </div>
   </fieldset>
 </form>
 <script src="jquery-3.3.1.min.js"></script>
