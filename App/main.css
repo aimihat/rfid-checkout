@@ -10,7 +10,7 @@ html {
 	
 	/*background = gradient + image pattern combo*/
 	background: 
-		linear-gradient(rgb(58, 133, 255), rgb(173, 204, 255));
+		linear-gradient(rgba(12, 204, 82,0.9),rgba(12, 204, 82,0.65))
 }
 
 body {
@@ -91,7 +91,7 @@ body {
 	list-style-type: none;
 	color: white;
 	text-transform: uppercase;
-	font-size: 9px;
+	font-size: 11px;
 	width: 33.33%;
 	float: left;
 	position: relative;
@@ -99,14 +99,14 @@ body {
 #progressbar li:before {
 	content: counter(step);
 	counter-increment: step;
-	width: 20px;
-	line-height: 20px;
+	width: 25px;
+	line-height: 25px;
 	display: block;
 	font-size: 10px;
 	color: #333;
 	background: white;
 	border-radius: 3px;
-	margin: 0 auto 5px auto;
+	margin: 0 auto 10px auto;
 }
 /*progressbar connectors*/
 #progressbar li:after {
@@ -126,9 +126,37 @@ body {
 /*marking active/completed steps green*/
 /*The number of the step and the connector before it = green*/
 #progressbar li.active:before,  #progressbar li.active:after{
-	background: #27AE60;
+	background: rgb(255, 143, 57);
 	color: white;
 }
 
+#msform input.scan-button {
+	border: none;
+    font-family: inherit;
+    cursor: pointer;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    outline: none;
+    position: relative;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+	width: 50%!important;
+	margin: 50px auto 80px!important;
+	padding: 25px 20px!important;
+	font-size: 27px!important;
+	background: #0ccc52;
+    color: #fff;
+    box-shadow: 0 6px #07993d;
+    -webkit-transition: none;
+    -moz-transition: none;
+    transition: none;
+
+}
 
 
+.welcome-text {
+	margin-top: 80px!important;
+}
