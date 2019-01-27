@@ -237,6 +237,7 @@ body {
 
 .coupon-code.promo {
 	margin-left: 51px!important;
+	width: 35%;
 }
 
 .coupon-code.language input {
@@ -332,6 +333,7 @@ html, body {
     -webkit-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 .table th {
@@ -346,6 +348,7 @@ html, body {
     font-weight: 400;
     color: #757575;
     vertical-align: bottom;
+    background: rgba(0, 0, 0, 0.12);
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 
