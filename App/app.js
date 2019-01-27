@@ -15,8 +15,8 @@ $('.scan-button').click(function(){
 		var obj = JSON.parse(data);
 		// Todo: qanity
 		obj.forEach(function(el) {
-			total = total + el[1];
-			$('#table tbody').append('<tr><td>£'+el[0]+'</td><td>'+el[1]+'</td><td>1</td><td>£'+el[1]+'</td></tr>')
+			total = total + parseFloat(el[1]);
+			$('#table tbody').append('<tr><td>'+el[0]+'</td><td>£'+el[1]+'</td><td>1</td><td>£'+el[1]+'</td></tr>')
 		});
 		$('.fs-title.total').text('Total: £'+total.toString());
 		gotonext($('.scanning-page'))
