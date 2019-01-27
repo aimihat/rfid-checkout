@@ -53,9 +53,9 @@
     <h3 class="fs-subtitle">Please select your preferred payment method.</h3>
     <div class="payment-methods">
 		<input type="button" name="next" class="green-button payment-method debit-method" value="Debit/Credit Card" />
-		<input type="button" name="next" class="green-button payment-method" value="Loyalty Points" />
-		<input type="button" name="next" class="green-button payment-method" value="Cash" />
-		<input type="button" name="next" class="green-button payment-method" value="Sexual favours" />
+		<input type="button" name="next" class="green-button payment-method" value="Loyalty Points" onclick="responsiveVoice.speak('You currently do not have any loyalty points.');" />
+		<input type="button" name="next" class="green-button payment-method" onclick="responsiveVoice.speak('We are sorry, this store is cash only');" value="Cash" />
+		<input type="button" name="next" onclick="responsiveVoice.speak('One of our team members will be with you shortly');" class="green-button payment-method" value="Sexual favours" />
 	</div>
 	<div class='form-row coupon-code promo'>
           <div class='input-group'>
