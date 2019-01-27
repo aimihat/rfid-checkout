@@ -9,7 +9,7 @@ var theft;
 $('.scan-button').click(function(){
 	$('.scan-loader').show()
 	$('.scan-button').hide()
-	var total;
+	var total = 0;
 	// gotonext($('.scanning-page'))
 	$.get("http://localhost:8000/scan",function(data){
 		var obj = JSON.parse(data);
