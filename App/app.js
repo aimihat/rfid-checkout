@@ -18,6 +18,7 @@ $('.scan-button').click(function(){
 			total = total + parseFloat(el[1]);
 			$('#table tbody').append('<tr><td>'+el[0]+'</td><td>£'+el[1]+'</td><td>1</td><td>£'+el[1]+'</td></tr>')
 		});
+		total = Math.round(total * 100) / 100
 		$('.fs-title.total').text('Total: £'+total.toString());
 		gotonext($('.scanning-page'))
 	})
