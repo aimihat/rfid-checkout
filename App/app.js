@@ -9,12 +9,16 @@ var theft;
 $('.scan-button').click(function(){
 	$('.scan-loader').show()
 	$('.scan-button').hide()
-	$.get("localhost:8000/scan",function(data){
+	var total;
+	// gotonext($('.scanning-page'))
+	$.get("http://localhost:8000/scan",function(data){
 		var obj = JSON.parse(data);
 		// Todo: qanity
 		obj.forEach(function(el) {
-			$('#table tbody').append('<tr><td>'+el[0]+'</td><td>'+el[1]+'</td><td>1</td><td>'+el[1]+'</td></tr>')
-		})
+			total = total + el[1];
+			$('#table tbody').append('<tr><td>£'+el[0]+'</td><td>'+el[1]+'</td><td>1</td><td>£'+el[1]+'</td></tr>')
+		});
+		$('.fs-title.total').text('Total: £'+total.toString());
 		gotonext($('.scanning-page'))
 	})
 })
@@ -109,7 +113,10 @@ $('.debit-method').click(function(){
 		$('.thank_you h1').addClass('animated fadeInDown').show();
 		$('.thank_you input').show();
 		$('.thank_you .assistant-loader').hide();
+		responsiveVoice.speak("Thank you for using Docsoc's favourite checkout system.")
 	},1000)
 	
 })
 
+// var tts = new GoogleTTS('en');
+// responsiveVoice.speak("Shake that ass for me");

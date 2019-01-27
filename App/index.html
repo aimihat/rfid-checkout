@@ -8,7 +8,7 @@
 </head>
 <body>
 <form id="msform">
-	<h1 class="supermarket-name">Ocadow</h1>
+	<h1 class="supermarket-name"><a href="" style="text-decoration: none; color: white;">Ocadow</a></h1>
   <ul id="progressbar">
     <li class="active">Start scan</li>
     <li>Confirm Items</li>
@@ -17,7 +17,7 @@
   <fieldset class="scanning-page">
     <h2 class="fs-title welcome-text">Welcome</h2>
     <h3 class="fs-subtitle">Please walk in the scanning area to begin.</h3>
-    <input type="button" name="next" class="next scan-button green-button" value="Scan" />
+    <input type="button" name="next" onclick="responsiveVoice.speak('Please wait for scanning to complete.');" class="next scan-button green-button" value="Scan" />
     <div class="scan-loader" style="display:none">
 		<div class="dot"></div>
 		<div class="dot"></div>
@@ -40,10 +40,10 @@
 	      <tbody>
 	      </tbody>
 	    </table>
-	    <h2 class="fs-title" style="text-transform: none; text-align: right; margin:  -15px auto -15px;">Total: £15.42</h2>
+	    <h2 class="fs-title total" style="text-transform: none; text-align: right; margin:  -15px auto -15px;">Total: £15.42</h2>
 	</div>
     <div class="items-show-options">
-    <input type="button" name="next" onclick="$('#help_box').modal()" class="green-button something-wrong" value="Something Wrong?" />
+    <input type="button" name="next" onclick="$('#help_box').modal();responsiveVoice.speak('Please wait, an assistant is coming to help you.');" class="green-button something-wrong" value="Something Wrong?" />
 	<input type="button" name="next" class="green-button pay-button" value="Pay" />
 	</div>
   </fieldset>
@@ -71,7 +71,7 @@
 			<div class="dot"></div>
 		</div>
    		<h1 style="display: none">Thank you for choosing us!</h1>
-   		<input style="display: none" type="button" name="next" class="green-button payment-method" value="Next client →" />
+   		<a href="/"><input style="display: none" type="button" name="next" class="green-button payment-method" value="Next client →" /></a>
    </div>
   </fieldset>
 
@@ -98,9 +98,11 @@
 
 
 </form>
+
 <!-- jQuery -->
 <script src="jquery-3.3.1.min.js"></script>
 <script src="jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+<script src='https://code.responsivevoice.org/responsivevoice.js'></script>
 <script type="text/javascript" src='app.js'></script>
 <canvas class="background"></canvas>
 <script src="particles.js"></script>
