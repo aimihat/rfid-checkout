@@ -15,8 +15,8 @@ $('.scan-button').click(function(){
 		var obj = JSON.parse(data);
 		// Todo: qanity
 		obj.forEach(function(el) {
-			total = total + parseFloat(el[1]);
-			$('#table tbody').append('<tr><td>'+el[0]+'</td><td>£'+el[1]+'</td><td>1</td><td>£'+el[1]+'</td></tr>')
+			total = total + parseFloat(el[1])*parseFloat(el[3]);
+			$('#table tbody').append('<tr><td>'+el[0]+'</td><td>£'+el[1]+'</td><td>'+el[3]+'</td><td>£'+el[1]*el[3]+'</td></tr>')
 		});
 		total = Math.round(total * 100) / 100
 		$('.fs-title.total').text('Total: £'+total.toString());
@@ -114,8 +114,9 @@ $('.debit-method').click(function(){
 		$('.thank_you h1').addClass('animated fadeInDown').show();
 		$('.thank_you input').show();
 		$('.thank_you .assistant-loader').hide();
+		$.get("http://6828954a.ngrok.io/open_door", {}, function(){});
 		responsiveVoice.speak("Thank you for using Docsoc's favourite checkout system.")
-	},1000)
+	},2500)
 	
 })
 
