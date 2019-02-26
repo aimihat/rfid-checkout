@@ -1,19 +1,153 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Hello World!</title>
-  </head>
-  <body>
-    <h1>Hello World!</h1>
-    <!-- All of the Node.js APIs are available in this renderer process. -->
-    We are using Node.js <script>document.write(process.versions.node)</script>,
-    Chromium <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
+<head>
+    <title>Supermarket Checkout</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/animate.css">
+</head>
+<body>
+<form id="msform">
+    <h1 class="supermarket-name"><a href="" style="text-decoration: none; color: white;">Ocadow</a></h1>
+    <h1 style="display: none;" id="errorMessage"></h1>
+    <h1 style="display: none;" id="userInstruction"></h1>
+    <ul id="progressbar">
+        <li class="active">Start scan</li>
+        <li>Confirm Items</li>
+        <li>Payment</li>
+    </ul>
+    <fieldset class="scanning-page">
+        <h2 class="fs-title welcome-text">Welcome</h2>
+        <h3 class="fs-subtitle">Please walk in the scanning area to begin.</h3>
+        <input type="button" name="next" onclick="responsiveVoice.speak('Please wait for scanning to complete.');"
+               class="next scan-button green-button" value="Scan"/>
+        <div class="scan-loader" style="display:none">
+            <div class="dot"></div>
 
-    <script>
-      // You can also require other files to run in this process
-      require('./renderer.js')
-    </script>
-  </body>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </fieldset>
+    <fieldset class="item-confirmation-page">
+        <h2 class="fs-title">Confirm Items</h2>
+        <h3 class="fs-subtitle">The items that you bought. There are no active promos.</h3>
+        <div style="width: 77%; margin: 0 auto;">
+            <table id="table" class="table table-hover table-mc-light-blue">
+                <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Item Price</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <h2 class="fs-title total" style="text-transform: none; text-align: right; margin:  -15px auto -15px;">
+                Total: £15.42</h2>
+        </div>
+        <div class="items-show-options">
+            <input type="button" name="next"
+                   onclick="$('#help_box').modal();responsiveVoice.speak('Please wait, an assistant is coming to help you.');"
+                   class="green-button something-wrong" value="Something Wrong?"/>
+            <input type="button" name="next" class="green-button pay-button" value="Pay"/>
+        </div>
+    </fieldset>
+    <fieldset class="payment-page">
+        <div class="payment-stuff">
+            <h2 class="fs-title">Payment of £15.42</h2>
+            <h3 class="fs-subtitle">Please select your preferred payment method.</h3>
+            <div class="payment-methods">
+                <input type="button" name="next" class="green-button payment-method face-payment"
+                       onclick="responsiveVoice.speak('Please position your face in the circular frame.');"
+                       value="Ocadow Account"/>
+                <input type="button" name="next" class="green-button payment-method debit-method"
+                       value="Debit/Credit Card"/>
+                <input type="button" name="next" class="green-button payment-method" value="Loyalty Points"
+                       onclick="responsiveVoice.speak('You currently do not have any loyalty points.');"/>
+                <input type="button" name="next"
+                       onclick="responsiveVoice.speak('Please insert cash in the assistant\'s pocket.');"
+                       class="green-button payment-method" value="Cash"/>
+            </div>
+            <div class='form-row coupon-code promo'>
+                <div class='input-group'>
+                    <label for=''>Coupon code</label>
+                    <input placeholder='' type='text'>
+                </div>
+            </div>
+        </div>
+        <div class="thank_you" style="display: none;">
+            <div class="assistant-loader">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+            <h1 style="display: none">Thank you for choosing us!</h1>
+            <a onclick="location.reload()"><input style="display: none" type="button" name="next"
+                                                  class="green-button payment-method" value="Next client →"/></a>
+        </div>
+        <div class="face_detection" style="display: none;">
+            <video id="videoInput" width=600 height=450></video>
+            <!--<div id="pointf" style="width:10px;height:10px;background:black;position:absolute;"></div>-->
+            <div id="circle"></div>
+            <div class="face-loader">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+            <h1 style="display: none">Thank you for choosing us!</h1>
+            <a onclick="location.reload()"><input style="display: none" type="button" name="next"
+                                                  class="green-button payment-method" value="Next client →"/></a>
+        </div>
+    </fieldset>
+
+    <div class="footer">
+        <div class='form-row coupon-code language'>
+            <div class='input-group'>
+                <label for=''>Language</label>
+                <input disabled placeholder='English' type='text'>
+            </div>
+        </div>
+
+        <div id="warning_box" class="modal">
+            <img id="warning_triangle" src="img/triangle.png" alt="warning">
+            <p class="warning_text">Please do not forget to pay for your items. <br/> An assistant is coming to help
+                you.
+            </p>
+        </div>
+        <div id="help_box" class="modal">
+            <div class="assistant-loader">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+            <p class="warning_text">Please wait, an assistant is coming to help you.</p>
+        </div>
+    </div>
+
+</form>
+
+<script>if (typeof module === 'object') {
+    window.module = module;
+    module = undefined;
+}</script>
+
+<!-- jQuery -->
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+<script src='https://code.responsivevoice.org/responsivevoice.js'></script>
+<script src = "js/frontal_face.js" type = "text/javascript"></script>
+<script src="js/opencv.js" type="text/javascript"></script>
+<script src="js/utils.js" type="text/javascript"></script>
+<script src = "js/face.js" type = "text/javascript"></script>
+<script type="text/javascript" src='js/app.js'></script>
+<canvas class="background"></canvas>
+<script src="js/particles.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css"/>
+
+<!-- Insert this line after script imports -->
+<script>if (window.module) module = window.module;</script>
+</body>
 </html>

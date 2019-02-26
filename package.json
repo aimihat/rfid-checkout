@@ -1,12 +1,16 @@
 {
-  "name": "electron-quick-start",
-  "version": "1.0.0",
-  "description": "A minimal Electron application",
-  "main": "main.js",
+  "name": "OcadowCheckout",
+  "version": "0.0.1",
+  "license": "MIT",
+  "description": "Automated checkout system",
+  "author": "Aimilios <aimilios@wisepricing.com>",
   "scripts": {
-    "start": "electron ."
+    "postinstall": "install-app-deps",
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
   },
-  "repository": "https://github.com/electron/electron-quick-start",
+  "main": "main.js",
   "keywords": [
     "Electron",
     "quick",
@@ -14,9 +18,38 @@
     "tutorial",
     "demo"
   ],
-  "author": "GitHub",
-  "license": "CC0-1.0",
+  "build": {
+    "appId": "com.example.app",
+    "dmg": {
+      "icon": "build/icon.icns",
+      "background": "build/background.png",
+      "contents": [
+        {
+          "x": 100,
+          "y": 100
+        },
+        {
+          "x": 150,
+          "y": 100,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ]
+    },
+    "win": {
+      "target": "portable",
+      "icon": "build/icon.ico"
+    }
+  },
+  "dependencies": {},
   "devDependencies": {
-    "electron": "^4.0.3"
+    "electron": "latest",
+    "electron-builder": "latest"
   }
 }

@@ -1,0 +1,499 @@
+/*basic reset*/
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    /*Image only BG fallback*/
+    min-height: 100vh;
+    /*background = gradient + image pattern combo*/
+    background: linear-gradient(rgba(12, 204, 82, 0.9), rgba(12, 204, 82, 0.65))
+}
+
+body {
+    font-family: 'Raleway' !important;
+}
+
+/*form styles*/
+#msform {
+    width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+}
+
+#msform fieldset {
+    background: white;
+    border: 0 none;
+    border-radius: 3px;
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+    padding: 80px 30px 80px !important;
+    box-sizing: border-box;
+    width: 80%;
+    margin: 0 10%;
+
+    /*stacking fieldsets above each other*/
+    position: relative;
+}
+
+/*Hide all except first fieldset*/
+#msform fieldset:not(:first-of-type) {
+    display: none;
+}
+
+/*inputs*/
+#msform input, #msform textarea {
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: montserrat;
+    color: #2C3E50;
+    font-size: 13px;
+}
+
+/*buttons*/
+#msform .action-button {
+    width: 100px;
+    background: #27AE60;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 1px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px;
+}
+
+#msform .action-button:hover, #msform .action-button:focus {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
+}
+
+/*headings*/
+.fs-title {
+    font-size: 20px;
+    text-transform: uppercase;
+    color: #2C3E50;
+    margin-bottom: 10px;
+}
+
+.fs-subtitle {
+    font-weight: normal;
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/*progressbar*/
+#progressbar {
+    margin-bottom: 30px;
+    overflow: hidden;
+    /*CSS counters to number the steps*/
+    counter-reset: step;
+}
+
+#progressbar li {
+    list-style-type: none;
+    color: white;
+    text-transform: uppercase;
+    font-size: 11px;
+    width: 33.33%;
+    float: left;
+    position: relative;
+}
+
+#progressbar li:before {
+    content: counter(step);
+    counter-increment: step;
+    width: 25px;
+    line-height: 25px;
+    display: block;
+    font-size: 10px;
+    color: #333;
+    background: white;
+    border-radius: 3px;
+    margin: 0 auto 10px auto;
+}
+
+/*progressbar connectors*/
+#progressbar li:after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: white;
+    position: absolute;
+    left: -50%;
+    top: 9px;
+    z-index: -1; /*put it behind the numbers*/
+}
+
+#progressbar li:first-child:after {
+    /*connector not needed before the first step*/
+    content: none;
+}
+
+/*marking active/completed steps green*/
+/*The number of the step and the connector before it = green*/
+#progressbar li.active:before, #progressbar li.active:after {
+    background: rgb(255, 143, 57);
+    color: white;
+}
+
+#msform input.green-button {
+    border: none;
+    font-family: inherit;
+    cursor: pointer;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    outline: none;
+    position: relative;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+    width: 50%;
+    margin: 50px auto 0;
+    padding: 25px 20px;
+    font-size: 27px;
+    background: #0ccc52;
+    color: #fff;
+    box-shadow: 0 6px #07993d;
+    -webkit-transition: none;
+    -moz-transition: none;
+    transition: none;
+
+}
+
+.welcome-text {
+
+    margin-top: 0px !important;
+}
+
+.scan-loader {
+    margin: 50px auto 80px !important;
+    position: relative;
+    left: 316px;
+}
+
+.dot {
+    width: 25px;
+    height: 25px;
+    border: 2px solid rgb(255, 143, 57);
+    border-radius: 50%;
+    float: left;
+    margin: 0 5px;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    -webkit-animation: fx 1000ms ease infinite 0ms;
+    animation: fx 1000ms ease infinite 0ms;
+}
+
+.dot:nth-child(2) {
+    -webkit-animation: fx 1000ms ease infinite 300ms;
+    animation: fx 1000ms ease infinite 300ms;
+}
+
+.dot:nth-child(3) {
+    -webkit-animation: fx 1000ms ease infinite 600ms;
+    animation: fx 1000ms ease infinite 600ms;
+}
+
+@-webkit-keyframes fx {
+    50% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes fx {
+    50% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.payment-method, .something-wrong, .pay-button {
+    padding: 10px !important;
+    width: 200px !important;
+    font-size: 15px !important;
+}
+.payment-method.face-payment.disabled {
+    opacity: 0.3!important;
+    cursor: initial!important;
+}
+
+.payment-methods input {
+    flex-basis: 35%;
+    margin: 25px 50px !important;
+}
+
+.payment-methods, .items-show-options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.face-loader {
+    position: absolute;
+    top: 215px;
+    left: 240px;
+}
+.face_detection.active {
+    height: 450px;
+}
+.something-wrong {
+    background: rgb(255, 143, 57) !important;
+    box-shadow: 0 6px rgb(221, 110, 24) !important;
+}
+
+.supermarket-name {
+    margin: 20px !important;
+    color: white;
+}
+
+.coupon-code input {
+    width: 300px !important;
+}
+
+.coupon-code.language input::placeholder {
+    font-size: 17px;
+    text-align: center;
+}
+
+.coupon-code.promo {
+    margin-left: 51px !important;
+    width: 35%;
+}
+
+.coupon-code.language input {
+    width: 100px !important;
+    margin: 0 auto !important
+}
+
+.coupon-code {
+    margin: 35px auto -35px !important;
+    width: 200px;
+    font-weight: 700 !important;
+    float: left;
+}
+
+.footer {
+    width: 80%;
+    margin: 0 auto;
+    height: 150px;
+}
+
+.coupon-code .form-row {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-direction: normal;
+    -moz-box-direction: normal;
+    -webkit-box-orient: horizontal;
+    -moz-box-orient: horizontal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    margin: 0 0 30px;
+}
+
+.coupon-code input {
+    outline: none !important;
+    display: block !important;
+    background: rgba(0, 0, 0, 0.1) !important;
+    width: 100% !important;
+    margin: 0 !important;
+    border: 0 !important;
+    -webkit-border-radius: 3px !important;
+    -webkit-background-clip: padding-box !important;
+    -moz-border-radius: 3px !important;
+    -moz-background-clip: padding !important;
+    border-radius: 3px !important;
+    background-clip: padding-box !important;
+    padding: 15px !important;
+    color: #999 !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    -webkit-box-sizing: border-box !important;
+    -moz-box-sizing: border-box !important;
+    box-sizing: border-box !important;
+}
+
+.coupon-code label {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 0 10px !important;
+    color: #2C3E50 !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    letter-spacing: 1px !important;
+    text-transform: uppercase !important;
+}
+
+.coupon-code .form-row:last-child .input-group {
+    width: 75%;
+    margin: 0 15px 0 0;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+.background {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    z-index: -12;
+}
+
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 2rem;
+    background-color: #fff;
+}
+
+.table td {
+    text-align: left;
+    padding: 10px 15px;
+    vertical-align: top;
+    border-top: 0;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.table th {
+    text-align: left;
+    padding: 15px;
+    vertical-align: top;
+    border-top: 0;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+
+    font-weight: 400;
+    color: #757575;
+    vertical-align: bottom;
+    background: rgba(0, 0, 0, 0.12);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+#warning_triangle {
+    height: 300px;
+    width: 300px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+    margin-top: 50px;
+
+}
+
+.warning_text {
+    font-size: 30px;
+    width: 900px;
+    display: inline-block;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+
+    margin-top: 0px;
+    margin-bottom: 50px;
+
+}
+
+#videoInput {
+    -webkit-transform: rotateY(180deg);
+    margin: 0px auto;
+    width: 100%;
+    height: 100%;
+    background-color: transparent
+}
+
+#msform fieldset.nopadding {
+    padding-left: 0!important;
+    padding-right: 0!important;
+    padding-top: 0!important;
+    padding-bottom: 0!important;
+    width: 600px!important;
+    margin: 0 auto!important;
+}
+
+#circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -175px;
+    margin-left: -175px;
+    border-radius: 50%;
+    width: 350px;
+    height: 350px;
+    background: transparent;
+    border: 4px double white;
+}
+
+.modal {
+    display: none;
+}
+
+#warning_box {
+    max-width: none !important;
+    width: auto !important;
+
+}
+
+#help_box {
+    max-width: none !important;
+    width: auto !important;
+
+}
+
+ui-button.ui-corner-all.ui-widget.ui-button-icon-only.ui-dialog-titlebar-close {
+    display: none !important;
+}
+
+.close-modal {
+    display: none !important;
+}
+
+#lding {
+    height: 250px;
+    width: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+.assistant-loader {
+    margin: 50px auto 134px !important;
+    position: relative;
+    left: 384px;
+}
+
+.thank_you .assistant-loader {
+    position: relative !important;
+    left: 314px !important;
+    margin: initial !important;
+}
