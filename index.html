@@ -56,7 +56,7 @@
     </fieldset>
     <fieldset class="payment-page">
         <div class="payment-stuff">
-            <h2 class="fs-title">Payment of £15.42</h2>
+            <h2 class="fs-title">Payment of £<span class="payment-price"></span></h2>
             <h3 class="fs-subtitle">Please select your preferred payment method.</h3>
             <div class="payment-methods">
                 <input type="button" name="next" class="green-button payment-method face-payment"
@@ -100,6 +100,38 @@
             <a onclick="location.reload()"><input style="display: none" type="button" name="next"
                                                   class="green-button payment-method" value="Next client →"/></a>
         </div>
+        <div class="cant-recognize" style="display: none;">
+            <h2 class="fs-title welcome-text">Create an account</h2>
+            <h3 class="fs-subtitle">Customers with an account check out 10-15 seconds faster.</h3>
+            <div class="button-container">
+                <input type="button" name="next" class="green-button new-user"
+                           value="Yes" onclick="responsiveVoice.speak('Please fill in your details.');"/>
+                <input type="button" name="next" class="green-button another-method" value="Not now"
+                           onclick="responsiveVoice.speak('Please select a different payment method.');"/>
+            </div>
+        </div>
+        <div class="registration-page" style="display: none;">
+            <h2 class="fs-title welcome-text">Fill in your contact details.</h2>
+            <h3 class="fs-subtitle">Your card will be debited automatically when you scan your face.</h3>
+            <div class = "customer-data">
+                <div class="details-form">
+                    <input id = "nameField" class="nameField" type="text" placeholder="First Name"/>
+                    <input id = "surnameField" class="surnameField" type="text" placeholder="Surname"/>
+                    <input id = "emailField" class="emailField" type="text" placeholder="Email address"/>
+                </div>
+                <div>
+                    <canvas id = "customerFace" class="customerFace" width="174" height="174"></canvas>
+                </div>
+            </div>
+            <div class = "registration-buttons">
+                <input  type="button" name="next" class="green-button submit-data disabled"
+                        value="Sign-up"/>
+                <input type="button" name="next" class="green-button another-method" value="Not now"
+                        onclick="responsiveVoice.speak('Select another payment method');"/>
+            </div>
+
+        </div>
+
     </fieldset>
 
     <div class="footer">

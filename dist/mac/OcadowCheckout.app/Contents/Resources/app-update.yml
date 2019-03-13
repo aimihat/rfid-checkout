@@ -1,4 +1,4 @@
-owner: electron
-repo: electron-quick-start
+owner: AimiHat
+repo: RFID-Checkout
 provider: github
 updaterCacheDirName: ocadowcheckout-updater

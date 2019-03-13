@@ -47,7 +47,9 @@
       "icon": "build/icon.ico"
     }
   },
-  "dependencies": {},
+  "dependencies": {
+    "package.json": "^2.0.1"
+  },
   "devDependencies": {
     "electron": "latest",
     "electron-builder": "latest"

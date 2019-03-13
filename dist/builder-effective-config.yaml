@@ -19,4 +19,4 @@ linux:
 win:
   target: portable
   icon: build/icon.ico
-electronVersion: 4.0.5
+electronVersion: 4.0.6

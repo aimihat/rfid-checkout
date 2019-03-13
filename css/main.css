@@ -17,6 +17,19 @@ body {
     font-family: 'Raleway' !important;
 }
 
+.registration-buttons .green-button, #msform .cant-recognize input.green-button {
+    text-transform: initial!important;
+    width: 30%!important;
+}
+.registration-buttons {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 25px!important;
+}
+.button-container {
+    display: flex;
+    justify-content: space-around;
+}
 /*form styles*/
 #msform {
     width: 1000px;
@@ -55,6 +68,7 @@ body {
     font-family: montserrat;
     color: #2C3E50;
     font-size: 13px;
+    margin-top: 3px;
 }
 
 /*buttons*/
@@ -236,11 +250,36 @@ body {
     cursor: initial!important;
 }
 
-.payment-methods input {
-    flex-basis: 35%;
-    margin: 25px 50px !important;
+.submit-data.disabled {
+    opacity: 0.3!important;
+    cursor: initial!important;
 }
 
+.payment-methods input {
+    flex-basis: 35%;
+    margin: 15px 50px !important;
+}
+
+
+.registration-buttons input{
+    flex-basis: 30%;
+    padding: 20px !important;
+    margin: 0!important;
+    font-size: 20px !important;
+}
+
+.customer-data {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.details-form {
+    width:50%;
+    margin-top: 2px;
+}
+.customerFace {
+    border: 1px solid #07993d;
+}
 .payment-methods, .items-show-options {
     display: flex;
     flex-wrap: wrap;

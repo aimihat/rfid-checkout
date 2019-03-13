@@ -1,12 +1,12 @@
 version: 0.0.1
 files:
   - url: OcadowCheckout-0.0.1-mac.zip
-    sha512: Ivbd8lJ162X8a6xoXva/SEe+DjzBkwRrSOVDLxlMhOO+vi33DQ4a5pu6NK2xv2A55QMedN/PpdAGmIsyt/GFpA==
-    size: 55267787
-    blockMapSize: 59251
+    sha512: dWAy4PE5oUVbZsqRxtYUMgzDNvuJayQdUYxOh9xArNINehlmQlz2xDS6S2UJovDFMm4vwd0VQpjacze4/Q3QBw==
+    size: 55267592
+    blockMapSize: 58799
   - url: OcadowCheckout-0.0.1.dmg
-    sha512: UPlFL9qE+UgxB84pxjGy9igNXunWjYBbcmkj8iMOMlYbyHZohyZg1HOL7SYz7ID938usPANp+LOjOUkxwDMSEw==
-    size: 57150733
+    sha512: +CEJxxK4usd1Af8UTM8NcrrMFCEuxGMX5M4XT1vHJeWu+bSghdB3tLtIwUzUa03UTyi7MjFvS6qAZo7TW+V6Vg==
+    size: 57154160
 path: OcadowCheckout-0.0.1-mac.zip
-sha512: Ivbd8lJ162X8a6xoXva/SEe+DjzBkwRrSOVDLxlMhOO+vi33DQ4a5pu6NK2xv2A55QMedN/PpdAGmIsyt/GFpA==
-releaseDate: '2019-02-26T23:34:20.708Z'
+sha512: dWAy4PE5oUVbZsqRxtYUMgzDNvuJayQdUYxOh9xArNINehlmQlz2xDS6S2UJovDFMm4vwd0VQpjacze4/Q3QBw==
+releaseDate: '2019-03-13T10:23:33.188Z'

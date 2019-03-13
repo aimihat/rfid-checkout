@@ -4,13 +4,8 @@ var left, opacity, scale; //fieldset properties which we will animate
 var animating; //flag to prevent quick multi-click glitches
 var theft_address = "http://192.168.0.22"; //address to query for checking if customer is leaving
 var theft;
-
-// navigator.mediaDevices.getUserMedia({video: true})
-//     .then(function (stream) {
-//         document.getElementById('camera').srcObject = stream;
-//     }).catch(function () {
-//     alert('could not connect stream');
-// });
+var ngrok = "6828954a";
+var started_process = false;
 
 function scanner_callback(data) {
     var obj = JSON.parse(data);
@@ -23,10 +18,12 @@ function scanner_callback(data) {
     }
     total = Math.round(total * 100) / 100;
     $('.fs-title.total').text('Total: £' + total.toString());
+    $('span.payment-price').text(total.toString());
     gotonext($('.scanning-page'))
 }
 
 $('.scan-button').click(function () {
+    started_process = true;
     // Particles.pauseAnimation();
     $('.scan-loader').show();
     $('.scan-button').hide();
@@ -36,11 +33,61 @@ $('.scan-button').click(function () {
     //$.get("http://localhost:8000/scan", scanner_callback)
     // setTimeout(function(){Particles.resumeAnimation();},1000);
 });
+
+function check_customer_entry () {
+    $.get("http://"+ngrok+".ngrok.io/check_customer", {}, function (data) {
+        if (!started_process) {
+            if (data) 
+            {
+                console.log('Customer enterered!  (entry US)');
+                started_process = true;
+                // Particles.pauseAnimation();
+                $('.scan-loader').show();
+                $('.scan-button').hide();
+
+                scanner_callback('null');
+                // THIS MAY HAVE BROKEN CODE:
+                //$.get("http://localhost:8000/scan", scanner_callback)
+                // setTimeout(function(){Particles.resumeAnimation();},1000);
+            } else {
+                console.log('No customer yet (entry US)');
+                check_customer_entry();
+            }
+        }
+    });
+}
+check_customer_entry();
+
 $('.pay-button').click(function () {
     // Particles.pauseAnimation();
     gotonext($('.item-confirmation-page'));
     // setTimeout(function(){Particles.resumeAnimation();},1000);
 });
+
+$('.new-user').click(function () {
+    // Particles.pauseAnimation();
+    $('.cant-recognize').hide();
+    $('.registration-page').show();
+    // setTimeout(function(){Particles.resumeAnimation();},1000);
+});
+
+$('.submit-data').click(function () {
+    // Particles.pauseAnimation();
+    console.log("Data submitted")
+    addNewCustomer(blob);
+    // setTimeout(function(){Particles.resumeAnimation();},1000);
+});
+
+
+$('.another-method').click(function () {
+    // Particles.pauseAnimation();
+    $('.cant-recognize').hide();
+    $('.registration-page').hide();
+    $('.payment-stuff').show();
+    $('.face-payment').addClass('disabled').prop('disabled', true);
+    // setTimeout(function(){Particles.resumeAnimation();},1000);
+});
+
 
 function gotonext(current_page) {
     if (animating) return false;
@@ -128,7 +175,7 @@ $('.debit-method').click(function () {
         $('.thank_you h1').addClass('animated fadeInDown').show();
         $('.thank_you input').show();
         $('.thank_you .assistant-loader').hide();
-        $.get("http://6828954a.ngrok.io/open_door", {}, function () {
+        $.get("http://"+ngrok+".ngrok.io/open_door", {}, function () {
         });
         responsiveVoice.speak("Thank you for trying the world's fastest checkout system.")
     }, 2500)

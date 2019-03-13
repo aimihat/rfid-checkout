@@ -1,13 +1,20 @@
 var utils = new Utils('errorMessage');
 let userInstruction = document.getElementById('userInstruction');
 
+let nameField = document.getElementById('nameField');
+let surnameField = document.getElementById('surnameField');
+let emailField = document.getElementById('emailField');
+
 var streaming = false;
 var videoInput = document.getElementById('videoInput');
 var circle = document.getElementById('circle');
 
-const subscriptionKey = "a7a384b30ee447b3a52ee1b0e0923f0a";
+const subscriptionKey = "9162906ad2fb44f99d886e995f113f3b";
+let indexMicrosoftId = 7;
+
 var customerListObject;
 var cv_ready = false;
+var blob;
 createCustomerList();
 toggleVideo();
 
@@ -32,6 +39,41 @@ function onVideoStarted() {
 
 function onVideoStopped() {
     streaming = false;
+}
+
+
+nameField.addEventListener('input', function(evt){
+    enableDisable();
+});
+
+surnameField.addEventListener('input', function(evt){
+    enableDisable();
+});
+
+emailField.addEventListener('input', function(evt){
+    enableDisable();
+});
+
+function enableDisable(){
+if (nameField.value.length != 0){
+    if (surnameField.value.length != 0){
+        if(emailField.value.length != 0){
+            $('.submit-data').removeClass('disabled').prop('disabled', false);
+        }
+        else{
+
+            $('.submit-data').addClass('disabled').prop('disabled', true);
+
+        }
+    }
+    else{
+        $('.submit-data').addClass('disabled').prop('disabled', true);
+    }
+}
+else{
+    $('.submit-data').addClass('disabled').prop('disabled', true);
+
+}
 }
 
 function opencvCapture(callBack) {
@@ -63,9 +105,10 @@ function subcap(callBack) {
         var countToMicrosoftCall = 0;
 
         let very_beginning = Date.now();
+        var previousX = 0;
+        var previousY = 0;
 
         function processVideo() {
-            console.log('processvideo');
             try {
                 if (!streaming) {
                     // clean and stop.
@@ -83,15 +126,17 @@ function subcap(callBack) {
                 cv.cvtColor(dst, gray, cv.COLOR_RGBA2GRAY, 0);
                 // detect faces.
                 classifier.detectMultiScale(gray, faces, 1.1, 3, 0);
+                var facesInCircle = 0;
                 // draw faces.
                 // schedule the next one.
+                var finalFace;
                 if (faces.size() == 0) {
                     userInstruction.textContent = "Get in the circle!";
                 }
                 for (let i = 0; i < faces.size(); ++i) {
-                    var facesInCircle = 0;
                     let face = faces.get(i);
                     if (face.x > 125 && face.x < (475 - face.width) && face.y > 50 && face.y < (400 - face.height)) {
+                        finalFace = face;
                         facesInCircle++;
                     }
                     else {
@@ -99,9 +144,19 @@ function subcap(callBack) {
                     }
                 }
                 if (facesInCircle == 1) {
-                    circle.style.border = "4px double rgba(12, 204, 82, 0.9)";
-                    countToMicrosoftCall++;
-                    console.log('+=1');
+                    //console.log(Math.abs(finalFace.x-previousX) + ", " +Math.abs(finalFace.y-previousY));
+                    //circle.style.border = "4px double rgba(12, 204, 82, 0.9)";
+                    if (Math.abs(finalFace.x-previousX)<5 && Math.abs(finalFace.y-previousY)<5){
+                        circle.style.border = "4px double rgba(12, 204, 82, 0.9)";
+                        countToMicrosoftCall++;
+                        //console.log('+=1');
+
+                    }
+                    else{
+                        console.log("Don't move!");
+                    }
+                    previousX = finalFace.x;
+                    previousY = finalFace.y;
                 }
                 else {
                     countToMicrosoftCall = 0;
@@ -117,7 +172,7 @@ function subcap(callBack) {
                 else {
                     let delay = 1000 / FPS - (Date.now() - begin);
                     if (Date.now()-very_beginning > 20 * 1000) {
-                        responsiveVoice.speak("No face was detected. Please select an alternative payment method or try again.");
+                        responsiveVoice.speak("No face was detected. Select an alternative payment method or try again.");
                         $('.payment-page').removeClass('nopadding');
                         $('.payment-stuff').show();
                         $('.face_detection').hide();
@@ -139,12 +194,13 @@ function subcap(callBack) {
 }
 function takeSnap() {
     const canvas = document.createElement('canvas'); // create a canvas
+    const displayCanvas = document.getElementById('customerFace')
     const ctx = canvas.getContext('2d'); // get its context
-
-    canvas.width = videoInput.videoWidth; // set its size to the one of the video
-    canvas.height = videoInput.videoHeight;
-
-    ctx.drawImage(videoInput, 0, 0); // the video
+    const displayctx = displayCanvas.getContext('2d')
+    displayctx.drawImage(videoInput, videoInput.videoWidth/2-175,videoInput.videoHeight/2-175,350,350,0,0,174,174)
+    canvas.width = 350; // set its size to the one of the video
+    canvas.height = 350;
+    ctx.drawImage(videoInput, videoInput.videoWidth/2-175,videoInput.videoHeight/2-175,350,350,0,0,350,350); // the video
     var dataURL = canvas.toDataURL('image/jpeg');
     var BASE64_MARKER = ';base64,';
     if (dataURL.indexOf(BASE64_MARKER) == -1) {
@@ -163,7 +219,8 @@ function takeSnap() {
     for (var i = 0; i < rawLength; ++i) {
         uInt8Array[i] = raw.charCodeAt(i);
     }
-    return new Blob([uInt8Array], {type: contentType});
+    blob = new Blob([uInt8Array], {type: contentType});
+    return blob;
 
 }
 
@@ -248,12 +305,13 @@ function customerIdentify(faceID) {
         console.log(JSON.stringify(data, null, 2));
         for (i = 0; i < customerListObject.length; i++) {
             if (!data[0].candidates[0]) {
-                responsiveVoice.speak('No face match found. Please select an alternative payment method.');
+                responsiveVoice.speak('No face match found.');
                 $('.face_detection video').hide();
                 $('.face_detection #circle').hide();
+
                 $('.payment-page').removeClass('nopadding');
-                $('.payment-stuff').show();
-                $('.face-payment').addClass('disabled').prop('disabled', true);
+                $('.cant-recognize').show();
+                //$('.face-payment').addClass('disabled').prop('disabled', true);
                 $('.face_detection').hide();
                 Particles.resumeAnimation();
                 break;
@@ -280,6 +338,107 @@ function customerIdentify(faceID) {
     }).fail(function (jqXHR, textStatus, errorThrown) {
         errorCallingMicrosoft(jqXHR, textStatus, errorThrown)
     });
+}
+
+function addNewCustomer(blob){
+    customerID = customerListObject.length;
+    var customerData = [customerID.toString(), emailField.value, nameField.value, surnameField.value, 0,"x","x","","0"];
+    //time3 = Date.now();
+    var uriBase =
+        "https://uksouth.api.cognitive.microsoft.com/face/v1.0/largepersongroups/rfid_11_customergroup/persons";
+        //console.log('{"name": '+customerData[0]+', "userData": '+customerData+'}');
+
+    // Perform the REST API call.
+    $.ajax({
+        url: uriBase,
+
+        // Request headers.
+        beforeSend: function(xhrObj){
+            xhrObj.setRequestHeader("Content-Type","application/json");
+            xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", subscriptionKey);
+        },
+        processData: false,
+        type: "POST",
+
+        // Request body.
+        data: '{"name": "'+customerData[0]+'", "userData": "'+customerData+'"}',
+    })
+
+    .done(function(data) {
+        //console.log(JSON.stringify(data, null, 2));
+        //console.log(Date.now()-time3);
+        customerData[indexMicrosoftId] = data.personId;
+        addNewFace(blob, customerData);
+    })
+
+    .fail(function(jqXHR, textStatus, errorThrown){errorCallingMicrosoft(jqXHR, textStatus, errorThrown)});
+}
+
+function addNewFace(blob, customerData){
+    //time3 = Date.now();
+    var uriBase =
+        "https://uksouth.api.cognitive.microsoft.com/face/v1.0/largepersongroups/rfid_11_customergroup/persons/"+customerData[indexMicrosoftId]+"/persistedfaces";
+
+    // Perform the REST API call.
+    $.ajax({
+        url: uriBase,
+
+        // Request headers.
+        beforeSend: function(xhrObj){
+            xhrObj.setRequestHeader("Content-Type","application/octet-stream");
+            xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", subscriptionKey);
+        },
+        processData: false,
+        type: "POST",
+
+        // Request body.
+        data: blob,
+    })
+
+    .done(function(data) {
+        $('.registration-page').hide();
+        $('.face_detection').show();
+        
+        $('.face_detection h1').text('Thank you for choosing us, ' + customerData[2]).addClass('animated fadeInDown').show();
+        $('.registration-page nameField').hide();
+        $('.registration-page surnameField').hide();
+        $('.registration-page emailField').hide();
+        $('.registration-page submit-data').hide();
+        $('.registration-page another-method').hide();
+        $('.registration-page customerFace').hide();
+        $('.payment-page').removeClass('nopadding');
+        $('.face_detection').removeClass('active');
+        $('.face_detection input').show();
+        responsiveVoice.speak("Thanks " + customerData[2] + " for trying the world's fastest checkout system!");
+        train();
+    })
+
+    .fail(function(jqXHR, textStatus, errorThrown){errorCallingMicrosoft(jqXHR, textStatus, errorThrown)});
+}
+
+function train(){
+    var uriBase =
+        "https://uksouth.api.cognitive.microsoft.com/face/v1.0/largepersongroups/rfid_11_customergroup/train";
+
+    // Perform the REST API call.
+    $.ajax({
+        url: uriBase,
+
+        // Request headers.
+        beforeSend: function(xhrObj){
+            xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", subscriptionKey);
+        },
+        processData: false,
+        type: "POST",
+    })
+
+    .done(function(data) {
+        createCustomerList();
+        //console.log(JSON.stringify(data, null, 2));
+        //console.log(Date.now()-time3);
+    })
+
+    .fail(function(jqXHR, textStatus, errorThrown){errorCallingMicrosoft(jqXHR, textStatus, errorThrown)});
 }
 
 function errorCallingMicrosoft(jqXHR, textStatus, errorThrown) {

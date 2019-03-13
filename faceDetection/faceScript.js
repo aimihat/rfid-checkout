@@ -10,7 +10,7 @@ let nameField = document.getElementById('nameField');
 let surnameField = document.getElementById('surnameField');
 let emailField = document.getElementById('emailField');
 
-const subscriptionKey = "a7a384b30ee447b3a52ee1b0e0923f0a";
+const subscriptionKey = "9162906ad2fb44f99d886e995f113f3b";
 let indexMicrosoftId = 7;
 var customerListObject;
 
@@ -124,7 +124,7 @@ function opencvCapture(callBack){
                 var facesInCircle = 0;
                 let face = faces.get(i);
                 //console.log("x= " + face.x +", y= " + face.y);
-                if (face.x>180 && face.x<(460-face.width) && face.y>100 && face.y<(380-face.height)){
+                if (face.x>170 && face.x<(470-face.width) && face.y>100 && face.y<(420-face.height)){
                     facesInCircle++;
                     //console.log("In circle!");
                 }
@@ -163,14 +163,18 @@ function opencvCapture(callBack){
 
 function takeSnap(){
     //console.log("TakingSnap...");
-    time2 = Date.now();
+    //time2 = Date.now();
     const canvas = document.createElement('canvas'); // create a canvas
     const ctx = canvas.getContext('2d'); // get its context
 
-    canvas.width = videoInput.videoWidth; // set its size to the one of the video
-    canvas.height = videoInput.videoHeight;
+    //canvas.width = videoInput.videoWidth; // set its size to the one of the video
+    //canvas.height = videoInput.videoHeight;
+   
+    canvas.width = 350; // set its size to the one of the video
+    canvas.height = 350;
+    ctx.drawImage(videoInput, videoInput.videoWidth/2-175,videoInput.videoHeight/2-175,350,350,0,0,350,350); // the video
 
-    ctx.drawImage(videoInput, 0,0); // the video
+    //ctx.drawImage(videoInput, 0,0); // the video
     var dataURL = canvas.toDataURL('image/jpeg');
     var data = dataURL.split(',')[1];
     //var mimeType = dataUri.split(';')[0].slice(5)
