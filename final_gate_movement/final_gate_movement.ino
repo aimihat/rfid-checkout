@@ -1,5 +1,5 @@
 //Written by Christian Maschka
-//17.03.2019
+//18.03.2019
 
 
 #include <Stepper.h>//Uses standard Arduino Stepper Lib
