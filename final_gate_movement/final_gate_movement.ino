@@ -1,5 +1,5 @@
 //Written by Christian Maschka
-//18.03.2019
+//17.03.2019
 
 
 #include <Stepper.h>//Uses standard Arduino Stepper Lib
@@ -131,3 +131,5 @@ void homing_outside(){ //slowly moves and docks to switch outside/open
     myStepper.step(-1);
     }
   }
+
+
